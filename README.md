@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NoteQ
+## Description
 
-## Getting Started
+A NextJs Realtime Note Taking App built using Liveblocks, Blocknote, Firebase, Clerk Auth, Tailwind, React.It includes various components and utilities to manage and interact with Firebase services.
 
-First, run the development server:
+## Project Structure
+```
+.env.local
+.eslintrc.json
+.gitignore
+.next/
+actions/
+app/
+components/
+firebase-admin.ts
+firebase.ts
+lib/
+liveblocks.config.ts
+middleware.ts
+next-env.d.ts
+next.config.ts
+package.json
+postcss.config.mjs
+public/
+README.md
+service_key.json
+tailwind.config.ts
+tsconfig.json
+types/
+utils/
+```
 
-```bash
+## Setup
+### Prerequisites
+- **Node.js**
+- **npm or yarn**
+
+
+## Installation
+1. Clone the repository:
+
+```
+git clone <repository-url>
+cd <repository-directory>
+```
+2. Install dependencies:
+```
+npm install
+# or
+yarn install
+```
+
+
+3. Create a .env.local file in the root directory and add the following environment variables:
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=<your-firebase-api-key>
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<your-firebase-auth-domain>
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=<your-firebase-project-id>
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=<your-firebase-storage-bucket>
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<your-firebase-messaging-sender-id>
+NEXT_PUBLIC_FIREBASE_APP_ID=<your-firebase-app-id>
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=<your-firebase-measurement-id>
+PRIVATE_KEY=<your-private-key>
+CLIENT_EMAIL=<your-client-email>
+```
+
+4. Running the Project
+
+To start the development server, run:
+```
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Firebase Setup
+### Firebase Admin Initialization
+The Firebase Admin SDK is initialized in firebase-admin.ts. It ensures that all required environment variables are present and initializes the Firebase Admin app.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Firebase Client Initialization
+The Firebase client SDK is initialized in firebase.ts. It configures the Firebase app with the provided environment variables and initializes Firestore.
 
-## Learn More
+### Available Scripts
+dev: Runs the development server.
 
-To learn more about Next.js, take a look at the following resources:
+build: Builds the application for production.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+start: Starts the production server.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+lint: Runs ESLint to check for linting errors.
 
-## Deploy on Vercel
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request for any changes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
