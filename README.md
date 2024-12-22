@@ -91,6 +91,12 @@ start: Starts the production server.
 
 lint: Runs ESLint to check for linting errors.
 
+
+## Screenshots
+![1](https://raw.githubusercontent.com/definitelynotchirag/NoteQ/refs/heads/main/public/1.png)
+
+![2](https://raw.githubusercontent.com/definitelynotchirag/NoteQ/refs/heads/main/public/2.png)
+
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any changes.
 
