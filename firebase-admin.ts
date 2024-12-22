@@ -42,8 +42,8 @@ function initializeFirebaseAdmin() {
   if (getApps().length === 0) {
     // Ensure all required environment variables are present
     const requiredEnvVars = [
-      'NEXT_PUBLIC_PRIVATE_KEY',
-      'NEXT_PUBLIC_CLIENT_EMAIL',
+      'PRIVATE_KEY',
+      'CLIENT_EMAIL',
       'NEXT_PUBLIC_FIREBASE_PROJECT_ID'
     ];
     
@@ -56,10 +56,10 @@ function initializeFirebaseAdmin() {
     return initializeApp({
       credential: cert({
         projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-        clientEmail: process.env.NEXT_PUBLIC_CLIENT_EMAIL,
+        clientEmail: process.env.CLIENT_EMAIL,
         // The private key comes as a string with "\n" characters
         // We need to replace them with actual newlines
-        privateKey: process.env.NEXT_PUBLIC_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+        privateKey: process.env.PRIVATE_KEY?.replace(/\\n/g, '\n'),
       }),
       databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
     });
