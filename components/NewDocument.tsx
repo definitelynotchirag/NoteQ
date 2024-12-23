@@ -20,7 +20,7 @@ const NewDocumentButton = () => {
     });
   };
   return (
-    <Button className="bg-slate-700 shadow-slate-600 shadow-md" onClick={handleCreateNewDocument} disabled={isPending}>
+    <Button className="bg-slate-700 shadow-black shadow-lg" onClick={handleCreateNewDocument} disabled={isPending}>
       New Document
     </Button>
   );

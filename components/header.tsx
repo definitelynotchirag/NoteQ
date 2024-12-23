@@ -12,8 +12,9 @@ const Header = () => {
       {user && (
         <h1 className='font-bold text-xl'>NoteQ</h1>
       )}
-
+      <div className='hidden md:flex lg:flex'>
       <Breadcrumbs/>
+      </div>
 
       <div>
         <SignedOut>

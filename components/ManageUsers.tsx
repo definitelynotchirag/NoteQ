@@ -42,6 +42,7 @@ const ManageUsers = () => {
   };
 
   return (
+    <div>
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
     
       <Button asChild variant="default" className="border-0 bg-slate-700 shadow-lg shadow-slate-800">
@@ -93,6 +94,7 @@ const ManageUsers = () => {
         </div>
       </DialogContent>
     </Dialog>
+    </div>
   );
 };
 

@@ -44,26 +44,35 @@ const Document = ({ id }: { id: string }) => {
   return (
     <div className="flex-1 h-full bg-inherit p-5">
       <div className="flex max-w-6xl mx-auto justify-between pb-5">
-        <form className="flex flex-1 space-x-2" onSubmit={updateTitle}>
+        <form className="md:flex md:flex-1 w-full md:space-x-2" onSubmit={updateTitle}>
           {/* Update title */}
           <Input
             value={input}
-            className="border-0 bg-slate-600 shadow-xl shadow-slate-800"
+            className="border-0 w-full bg-slate-600 shadow-xl shadow-slate-800"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setInput(e.target.value)
             }
           />
+          
+          <div className="flex justify-between items-center md:space-x-2 my-3 md:my-0">
+          <div className="hidden md:flex">|</div>
+            <Button
+              disabled={isUpdating}
+              className="bg-slate-700 shadow-xl shadow-slate-800"
+              type="submit"
+            >
+              {isUpdating ? "Updating..." : "Update"}
+            </Button>
+            <div>|</div>
 
-          <Button disabled={isUpdating} className="bg-slate-700 shadow-xl shadow-slate-800" type="submit">
-            {isUpdating ? "Updating..." : "Update"}
-          </Button>
-
-          {isOwner && (
-            <>
-              <InviteUser  />
-              <DeleteDocument />
-            </>
-          )}
+            {isOwner && (
+              <>
+                <InviteUser />
+                <div>|</div>
+                <DeleteDocument />
+              </>
+            )}
+          </div>
         </form>
       </div>
 

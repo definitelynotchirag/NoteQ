@@ -12,7 +12,7 @@ const Avatars = () => {
   const all = [self, ...others];
   return (
     <div className="flex gap-2 items-center">
-      <p className="font-light text-sm">Users currently editing this page</p>
+      <p className="font-light text-sm text-right">Users</p>
 
       <div className="flex -space-x-5">
         {all.map((other, i) => (

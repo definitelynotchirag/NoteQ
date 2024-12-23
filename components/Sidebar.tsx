@@ -123,7 +123,7 @@ const Sidebar = () => {
           </SheetTrigger>
           <SheetContent className="bg-gray-900" side="left">
             <SheetHeader>
-              <SheetTitle>Menu</SheetTitle>
+              <SheetTitle className="text-white text-bold">Menu</SheetTitle>
               <div>{menuOptions}</div>
             </SheetHeader>
           </SheetContent>

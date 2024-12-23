@@ -25,7 +25,7 @@ function SidebarOptions({ href, id }: SidebarOptionsProps) {
             href={href} 
             className={clsx(
                 "relative border p-2 rounded-md",
-                isActive ? "bg-gray-700 shadow-md shadow-gray-600 text-center font-bold border-0 hover:bg-gray-600 ease-in-out transition-all" : "border-gray-700 shadow-md shadow-gray-600 text-center hover:bg-gray-600 ease-in-out transition-all"
+                isActive ? "bg-gray-700 shadow-lg shadow-black text-center font-bold border-0 hover:bg-gray-600 ease-in-out transition-all" : "border-gray-700 shadow-md shadow-black border-0 text-center hover:bg-gray-600 ease-in-out transition-all"
             )}
         >
             <p>{data.title}</p>

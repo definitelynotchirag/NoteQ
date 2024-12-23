@@ -17,7 +17,7 @@ const Breadcrumbs = () => {
   return (
     <div>
       <Breadcrumb >
-        <BreadcrumbList className="text-white">
+        <BreadcrumbList className="text-white text-sm">
           <BreadcrumbItem className="text-white">
             <BreadcrumbLink className="text-white hover:text-gray-600" href="/">Home</BreadcrumbLink>
           </BreadcrumbItem>
@@ -28,11 +28,11 @@ const Breadcrumbs = () => {
             return (
               <Fragment key={segment} >
                 <BreadcrumbSeparator />
-                <BreadcrumbItem className="text-white hover:text-gray-600" >
+                <BreadcrumbItem className="text-gray-300 hover:text-gray-600" >
                   {isLast ? (
-                    <BreadcrumbPage className="text-white hover:text-gray-600">{segment}</BreadcrumbPage>
+                    <BreadcrumbPage className="text-gray-600 hover:text-gray-800">{segment}</BreadcrumbPage>
                   ) : (
-                    <BreadcrumbLink className="text-white hover:text-gray-600" href={href}>{segment}</BreadcrumbLink>
+                    <BreadcrumbLink className="text-gray-400 hover:text-gray-600" href={href}>{segment}</BreadcrumbLink>
                   )}
                 </BreadcrumbItem>
               </Fragment>
