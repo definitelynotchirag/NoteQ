@@ -1,41 +1,45 @@
-
-import { auth } from "@clerk/nextjs/server";
 import { adminDb } from "@/firebase-admin";
+import { auth } from "@clerk/nextjs/server";
 
-import { NextRequest, NextResponse } from "next/server";
 import liveblocks from "@/lib/liveblocks";
-
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  auth.protect();
+    try {
+        const { sessionClaims } = await auth();
 
-  const { sessionClaims } = await auth();
-  const { room } = await req.json();
+        // If no session claims, return unauthorized
+        if (!sessionClaims) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
 
-  const session = liveblocks.prepareSession(sessionClaims?.email ?? "", {
-    userInfo: {
-      name: sessionClaims?.fullName ?? "",
-      email: sessionClaims?.email ?? "",
-      avatar: sessionClaims?.image ?? "",
-    },
-  });
+        const { room } = await req.json();
 
-  const usersInRoom = await adminDb
-    .collectionGroup("rooms")
-    .where("userId", "==", sessionClaims?.email)
-    .get();
+        const session = liveblocks.prepareSession(sessionClaims?.email ?? "", {
+            userInfo: {
+                name: sessionClaims?.fullName ?? "",
+                email: sessionClaims?.email ?? "",
+                avatar: sessionClaims?.image ?? "",
+            },
+        });
 
-  const userInRoom = usersInRoom.docs.find((doc) => doc.id === room);
+        const usersInRoom = await adminDb.collectionGroup("rooms").where("userId", "==", sessionClaims?.email).get();
 
-  if (userInRoom?.exists) {
-    session.allow(room, session.FULL_ACCESS);
-    const { body, status } = await session.authorize();
+        const userInRoom = usersInRoom.docs.find(doc => doc.id === room);
 
-    return new Response(body, { status });
-  } else {
-    return NextResponse.json(
-      { message: "You are not in this room" },
-      { status: 403 }
-    );
-  }
+        if (userInRoom?.exists) {
+            session.allow(room, session.FULL_ACCESS);
+            const { body, status } = await session.authorize();
+            return new Response(body, { status });
+        } else {
+            return NextResponse.json({ message: "You are not in this room" }, { status: 403 });
+        }
+    } catch (error) {
+        console.error("Auth endpoint error:", error);
+        if (error.message?.includes("NEXT_REDIRECT")) {
+            // Handle redirect gracefully
+            return NextResponse.json({ message: "Authentication required" }, { status: 401 });
+        }
+        return NextResponse.json({ message: "Internal server error" }, { status: 500 });
+    }
 }
